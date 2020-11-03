@@ -20,7 +20,7 @@ exports.getAeroData = (req, res, next) =>{
 
   let sql = `
     SELECT * 
-    FROM public."aero_data"
+    FROM public."aero_runs"
 
 `
 let values = []
@@ -34,14 +34,14 @@ if (Object.keys(req.query).length!==0){
     if(Array.isArray(value)){
       
       for (i = 0; i<value.length; i++){
-          temp = `"aero_data"."${key}" = $${count}`
+          temp = `"aero_runs"."${key}" = $${count}`
           count+=1
           values.push(value[i])
           list.push(temp)
       }
     } else {
 
-        temp = `"aero_data"."${key}" = $${count}`
+        temp = `"aero_runs"."${key}" = $${count}`
         count+=1
         values.push(value)
         list.push(temp)    
