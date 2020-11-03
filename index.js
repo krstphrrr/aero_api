@@ -26,7 +26,7 @@ db.authenticate()
     .catch(err => console.log('error:'+ err));
 
 app.get('/', (req, res) => {
-  res.send('aero api up. updated: 11-02-2020')
+  res.send('aero api up. updated: 11-03-2020')
   })
 app.use('/api', aeroRoute)
 db
