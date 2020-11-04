@@ -56,6 +56,7 @@ if (Object.keys(req.query).length!==0){
 
 }
 pool.connect((err,client, release)=>{
+  res.contentType('application/json')
   if(err){
     return console.error("error ")
   }
