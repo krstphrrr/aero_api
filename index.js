@@ -18,6 +18,30 @@ const aeroRoute = require('./routes/aero_get');
 const bodyparser = require('body-parser');
 app.use(bodyparser.urlencoded({ extended: true }));
 
+const swaggerOptions = {
+  swaggerDefinition: {
+    info:{
+      title: 'Aero/Flux API',
+      description: 'API to serve to AERO data',
+      contact:{
+        name:'kris'
+      },
+      servers:["http://localhost:5015/api/", "https://aero.landscapedatacommons.org/api/"]
+    }
+  },
+  apis:["./routes/*.js"]
+}
+
+var swaggerUiOpts = {
+  explorer: false,
+  swaggerOptions: swaggerOptions,
+  customCss: '.swagger-ui .topbar { display: none }'
+}
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, swaggerUiOpts))
+
+
 app.use(helmet())
 app.use(cors())
 
